@@ -1,0 +1,122 @@
+﻿--select
+--select * | column names from [table_name] where conditions order by columns group by having
+--select * from country
+--select id,name from country
+--select id as CountryID, name as CountryName from country
+--select * from country where id=1
+--select * from country where id>=1
+--select * from country where id<=10
+--select * from country where id>1
+--select * from country where id<1
+--select * from country where id!=1
+--select * from country where name='palestine'
+--select * from country where id>=1 and id<=3
+--select * from country where id=1 or id>3
+--select * from country where id between 1 and 3
+--select * from country where id in (1,4,3)
+--select * from country where id not in (1,4,3)
+--select * from country where name like 'p%' --starts with p
+--select * from country where name like '%p' --ends with p
+--select * from country where name like '%p%' --contains p
+--select * from country where name like '_a%' --ثاني حرف a
+--select * from country where name like 'a___' --يبدأ ب a وطوله اربعة حروف فقط لا غير
+
+--select * from country order by id desc 
+--select * from account  order by gender desc,fullname asc
+
+
+
+--insert
+--insert into [table_name] (columns you want to insert) values (values of your columns)
+--insert into country (name) values ('Qatar')
+--insert into account(fullname,active,gender,country_id,email) 
+				values ('b1090'	  ,1	,'M'	,'4','bm@aa.com')
+
+--insert into account values (NULL,'b1090','bm@aa.com',1,'M','4')
+--just in MYSQL more one row in one Insert statement
+--insert into country (name,code,iso3) values ('Qatar','qa','qar'),('Canada','ca','cnd')
+
+
+
+--update 
+update [table_name] set col1=val1,col2=val2...... where conditions
+update country set name='K.S.A' where id=2
+update country set name='K.S.A' where name='ksa'
+update account set username='Soliman',email='sol@aa.com',countryid=5 where id=6
+
+
+
+--delete
+delete from [table_name] where conditions
+delete from country --انت حذفت كل الدول
+
+
+
+--aggrigate functions
+select sum(id)as SumID,count(id)as CountID,
+avg(id)as AvgID,max(id)as MaxID,min(id)as Min,
+stddev(id) as StdDev from account
+
+--Select Distinct 
+select distinct gender
+from account
+
+--Advanced Select
+select gender,count(gender)
+from account
+group by gender
+
+
+select country_id,count(country_id),(select name from country where id=country_id)as Country
+from account
+group by country_id
+
+
+select country_id,count(country_id),(select name from country where id=country_id)as Country
+from account
+group by countryid
+having count(country_id)>=2
+
+
+--cross product
+select * from account,country
+where country_id=country.id
+
+
+
+select * from account a ,country c
+where a.country_id=c.id
+
+
+--subquery 
+select *,(select name from country where id=country_id)as country from account
+
+
+--join best if we want more than one column from primary table
+/*BAD*/
+select *
+,(select name from country where id=country_id)as country
+,(select iso2 from country where id=country_id)as iso2 
+from account
+
+in JOIN very GOOD
+select account.*,country.name,country.iso2 from account left join country on country.id=account.countryid
+where gender='M' --بيجوز
+
+--left join
+select account.*,country.name from account left join country on country.id=account.country_id
+
+--right join
+select account.*,country.name from account right join country on country.id=account.country_id
+
+--inner join
+select account.*,country.name from account inner join country on country.id=account.country_id
+
+
+--------------------------------------------------------------------
+--بيضاعف محتوى الجدول من البيانات لانه بيضيف بالجدول نفس محتوياته كاملة
+insert into account(fullname,email,active,gender,country_id)
+select  fullname,email,active,gender,country_id from account
+
+--concat مجرد توصيل بين جملتين في حالتنا الرقم والاسم
+update account set fullname=concat(fullname,id),email=concat(id,email) 

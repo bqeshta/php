@@ -1,0 +1,24 @@
+<html>
+        <head>
+            <title>An HTML form including a SELECT element</title>
+        </head>
+        <body>
+            <form action="2MultiSelectForm.php" method="POST">
+                <p><strong>Name:</strong><br/>
+                <input type="text" name="user"/>
+                <p><strong>Select Some Products:</strong><br/>
+                
+                <!--<select name="products[]" multiple="multiple">
+                    <option value="Sonic Screwdriver value">Sonic Screwdriver</option>
+                    <option value="Tricoder value">Tricorder</option>
+                    <option value="ORAC AI value">ORAC AI</option>
+                    <option>HAL 2000</option>
+                </select>-->
+                <label><input type="checkbox" name="products[]" value="Sonic Screwdriver">Sonic Screwdriver</label><br>
+                <label><input type="checkbox" name="products[]" value="Tricorder">Tricorder</label><br>
+                <label><input type="checkbox" name="products[]" value="ORAC AI">ORAC AI</label><br>
+                <label><input type="checkbox" name="products[]" value="HAL 2000">HAL 2000</label><br>
+                <p><input type="submit" value="send"/></p>
+            </form>
+        </body>
+     </html>

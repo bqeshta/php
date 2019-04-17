@@ -1,0 +1,8 @@
+Session                         Cookies
+---------------------------------------------------------------
+Server side                     Client side (browser)
+Store any object                Store only string
+Timeout                         Large age > 12 years
+More secure                     less than session (must encrypt if sinsitive info)
+easy to use                     not like session
+Per session                     Per Session or Per browser

@@ -1,0 +1,19 @@
+ <html>
+    <head>
+        <title>An HTML form including a SELECT element</title>
+    </head>
+    <body>
+        <form action="2MultiSelectForm.php" method="POST">
+            <p><strong>Name:</strong><br/>
+            <input type="text" name="user"/>
+            <p><strong>Select Some Products:</strong><br/>
+            <select name="products[]" multiple>
+                <option value="Sonic Screwdriver value">Sonic Screwdriver</option>
+                <option value="Tricoder value">Tricorder</option>
+                <option value="ORAC AI value">ORAC AI</option>
+                <option>HAL 2000</option>
+            </select>
+            <p><input type="submit" value="send"/></p>
+        </form>
+    </body>
+ </html>
